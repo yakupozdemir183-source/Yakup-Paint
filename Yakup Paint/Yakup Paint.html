@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Mini Paint (HTML)</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Segoe UI, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .toolbar {
+    background: #eee;
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  canvas {
+    flex: 1;
+    border: 1px solid #999;
+    cursor: crosshair;
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar">
+    Renk: <input type="color" id="color" value="#000000">
+    Kalınlık: <input type="range" id="size" min="1" max="50" value="5">
+    <button id="clear">Temizle</button>
+  </div>
+  <canvas id="paint"></canvas>
+
+<script>
+  const canvas = document.getElementById('paint');
+  const ctx = canvas.getContext('2d');
+  const colorInput = document.getElementById('color');
+  const sizeInput = document.getElementById('size');
+  const clearBtn = document.getElementById('clear');
+
+  function resizeCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight - document.querySelector('.toolbar').offsetHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let drawing = false;
+
+  canvas.addEventListener('mousedown', e => {
+    drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.offsetX, e.offsetY);
+  });
+  canvas.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.strokeStyle = colorInput.value;
+    ctx.lineWidth = sizeInput.value;
+    ctx.lineCap = "round";
+    ctx.stroke();
+  });
+  canvas.addEventListener('mouseup', () => drawing = false);
+  canvas.addEventListener('mouseleave', () => drawing = false);
+
+  clearBtn.addEventListener('click', () => {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  });
+</script>
+</body>
+</html>
