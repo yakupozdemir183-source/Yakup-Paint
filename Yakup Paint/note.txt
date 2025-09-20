@@ -1,0 +1,28 @@
+# Mini Paint (HTML Canvas)
+
+🖌️ **Mini Paint** is a simple drawing application built using HTML5 Canvas.
+
+It runs entirely in the browser and requires no installation.
+
+## Features
+- You can draw freely with your mouse.
+- 🎨 Color picker.
+- ➕➖ Brush thickness adjustment.
+- 🧹 Reset the canvas with the "Clear" button.
+
+## Usage
+1. Download this repo or open the `paint.html` file.
+
+2. Double-click it in the browser to open it.
+3. Select the color and brush size from the toolbar and start drawing.
+
+## Planned Features (for future releases)
+- 📥 Saving drawings as PNG.
+- 🔲 Drawing shapes such as squares/circles.
+- ✍️ Adding text.
+
+---
+
+⚠️ This app is for **educational and entertainment purposes only**. It is not a real Paint program.
+
+yakupaj2025
